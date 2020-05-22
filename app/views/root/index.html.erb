@@ -1,0 +1,10 @@
+<% content_for :javascript do %>
+  <script src="https://js.stripe.com/v3/"></script>
+<% end %>
+
+
+
+<h1>たろう商店</h1>
+
+<p>サービス料 1,000円</p>
+<%= button_tag '購入する', {id: "payment"} %>

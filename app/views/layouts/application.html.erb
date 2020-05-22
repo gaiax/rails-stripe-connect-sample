@@ -4,9 +4,21 @@
     <title>RailsStripeConnectSample</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <% if content_for?(:meta) %>
+      <%= yield(:meta) %>
+    <% end %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if content_for?(:javascript) %>
+      <%= yield(:javascript) %>
+    <% end %>
+    <% if Rails.root.join("app/javascript/packs/#{params[:controller]}.js").exist? %>
+      <%= javascript_pack_tag params[:controller] %>
+    <% end %>
+    <% if Rails.root.join("app/assets/stylesheets/#{params[:controller]}.css").exist? %>
+      <%= stylesheet_link_tag params[:controller] %>
+    <% end %>
   </head>
 
   <body>
