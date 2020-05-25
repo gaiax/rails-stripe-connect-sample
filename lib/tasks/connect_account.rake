@@ -58,6 +58,7 @@ namespace :connect_account do
     )
 
     # 銀行口座を作成する
+    # https://stripe.com/docs/connect/testing
     Stripe::Account.create_external_account(
       stripe_account.id,
       external_account: {
