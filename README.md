@@ -1,5 +1,7 @@
 # rails-stripe-connect-sample
 
+Stripe ConnectのCustomアカウントを利用してDirect Chargeで決済するサンプル。
+
 ## セットアップ
 
 1. [Stripeダッシュボード](https://dashboard.stripe.com/test/dashboard)でアカウントを作成する
@@ -14,10 +16,10 @@ $ docker-compose -d db
 
 $ yarn install
 $ bundle install --path=vendor
-$ rails db:create db:migrate
+$ bundle exec rails db:create db:migrate
 
 ### StripeのConnect Account（販売者アカウント）を作成する
-$ rails connect_account:create
+$ bundle exec rails connect_account:create
 ```
 
 ## サーバーを起動する
@@ -26,3 +28,9 @@ $ rails connect_account:create
 $ gem install foreman
 $ foreman start
 ```
+
+## リソース
+
+- [Stripe Connect: アカウントタイプ](https://stripe.com/jp/connect/account-types)
+- [Using Connect with Custom accounts | Stripe Connect](https://stripe.com/docs/connect/custom-accounts)
+- [Creating charges and taking fees | Stripe Connect](https://stripe.com/docs/connect/charges)
