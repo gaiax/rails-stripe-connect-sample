@@ -11,8 +11,12 @@ Stripe ConnectのCustomアカウントを利用してDirect Chargeで決済す�
 5. 次のコマンドを実行する
 
 ```sh
+### macOSの場合
+$ bundle config --local build.mysql2 "--with-ldflags=-L/usr/local/opt/openssl/lib"
+
+
 ### MySQLを起動する
-$ docker-compose -d db
+$ docker-compose up -d db
 
 $ yarn install
 $ bundle install --path=vendor
