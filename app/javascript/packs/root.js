@@ -8,7 +8,7 @@ $(document).ready(function () {
                 'X-CSRF-Token': getCsrfToken()
             },
             success: function (data) {
-                redirectToCheckout(data)
+                startDirectCharge(data)
             }
         })
         return false
