@@ -6,6 +6,13 @@
 
 .env
 
+# gitignoreに加える理由
+# - デモアプリのため編集不要なファイル
+# - master.keyをGit管理下に置きたくない
+#
+# それぞれの環境で生成する
+config/credentials.yml.enc
+
 # Ignore bundler config.
 /.bundle
 

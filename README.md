@@ -20,6 +20,10 @@ $ docker-compose up -d db
 
 $ yarn install
 $ bundle install --path=vendor
+
+### master.keyを生成する
+$ EDITOR=vi rails credentials:edit
+
 $ bundle exec rails db:create db:migrate
 
 ### StripeのConnect Account（販売者アカウント）を作成する
