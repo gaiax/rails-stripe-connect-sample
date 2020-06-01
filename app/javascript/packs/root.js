@@ -1,9 +1,14 @@
 $(document).ready(function () {
-    $('#payment').click(function () {
+    $('.payment').click(function () {
+        console.log($(this).attr('data-store-id'))
+        var storeId = $(this).attr('data-store-id')
         $.ajax({
             type: 'POST',
             url: '/create_session',
             dataType: 'json',
+            data: {
+                store_id: storeId
+            },
             headers: {
                 'X-CSRF-Token': getCsrfToken()
             },

@@ -3,7 +3,10 @@
 namespace :connect_account do
   desc 'Connect Account（販売者アカウント）を作成する'
   task create: :environment do
-    user = User.create
+    user = User.create(
+      email: 'taro@example.com',
+      password: 'password'
+    )
     # https://stripe.com/docs/connect/required-verification-information#JP-individual-card_payments
     stripe_account = Stripe::Account.create(
       {
@@ -74,6 +77,12 @@ namespace :connect_account do
 
     user.stripe_account_id = stripe_account.id
     user.save
+
+    Store.create(
+      user_id: user.id,
+      name: 'たろう商店',
+      service_fee: 1000
+    )
 
     Rails.logger.info "Created Stripe Connect account! #{user.stripe_account_id}"
   end

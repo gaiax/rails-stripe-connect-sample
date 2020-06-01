@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class RootController < ApplicationController
-  def index; end
+  def index
+    @stores = Store.all.order('updated_at DESC')
+  end
 
   # JavaScriptから叩くアクション
   # ref: app/javascript/packs/root.js
   def create_session
-    price = 1000
+    store = Store.find(create_session_params[:store_id])
     # Connect Accountが存在しなければサーバーが起動しないようになっている
     stripe_account_id = User.first.stripe_account_id
     # Direct Chargeを始める
@@ -18,12 +20,12 @@ class RootController < ApplicationController
           name: 'サービス料',
           # 国ごとに最低決済金額が決まっている
           # https://stripe.com/docs/currencies#minimum-and-maximum-charge-amounts
-          amount: price,
+          amount: store.service_fee,
           currency: 'jpy',
           quantity: 1
         }],
         payment_intent_data: {
-          application_fee_amount: (price * 0.1).to_i
+          application_fee_amount: (store.service_fee * 0.1).to_i
         },
         success_url: "#{request.protocol}#{request.host_with_port}#{success_path}",
         cancel_url: "#{request.protocol}#{request.host_with_port}#{cancel_path}"
@@ -39,4 +41,10 @@ class RootController < ApplicationController
   def success; end
 
   def cancel; end
+
+  private
+
+  def create_session_params
+    params.permit(:store_id)
+  end
 end
