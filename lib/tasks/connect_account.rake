@@ -29,15 +29,6 @@ namespace :connect_account do
             month: 4,
             day: 1
           },
-          address_kana: {
-            country: 'JP',
-            postal_code: '1500001',
-            state: 'ﾄｳｷﾖｳﾄ',
-            city: 'ｼﾌﾞﾔ',
-            town: 'ｼﾞﾝｸﾞｳﾏｴ 1-',
-            line1: '5-8',
-            line2: 'ｼﾞﾝｸﾞｳﾏｴﾀﾜｰﾋﾞﾙﾃﾞｨﾝｸﾞ22F'
-          },
           address_kanji: {
             postal_code: '１５００００１',
             state: '東京都',

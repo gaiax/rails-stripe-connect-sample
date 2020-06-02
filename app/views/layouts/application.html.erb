@@ -28,6 +28,12 @@
         <%= f.submit "ログアウト" %>
 
         ログイン中：<%= current_user.email %>
+
+        <% if @my_store.present? %>
+          <%= @my_store.name %>
+        <% else %>
+          <%= link_to '店舗登録する', new_connect_account_path %>
+        <% end %>
       <% end %>
     <% else %>
       <%= form_for :anything, method: "get", url: new_user_session_path do |f| %>

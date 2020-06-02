@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   post '/create_session', controller: :root, action: :create_session
   get '/success', controller: :root, action: :success
   get '/cancel', controller: :root, action: :cancel
+
+  resources :connect_accounts, only: %i[new create]
 end

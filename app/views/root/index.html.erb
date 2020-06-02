@@ -24,7 +24,13 @@
         <tr>
           <td><%= store.name %></td>
           <td><%= store.service_fee %></td>
-          <td><%= button_tag '購入する', {class: 'payment', disabled: current_user.blank?, data: {store_id: store.id}}  %></td>
+          <td class="payment">
+            <% if store.user_id == current_user.id %>
+              <p>自身の店舗では購入できません</p>
+            <% else %>
+              <%= button_tag '購入する', {class: 'payment', disabled: current_user.blank?, data: {store_id: store.id}}  %>
+            <% end%>
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -1,0 +1,83 @@
+<%= form_with url: connect_accounts_path, model: @individual_form, method: 'post' do |f| %>
+  <div>
+    メール
+    <%= f.text_field :email, placeholder: 'taro.yamada@example.com' %>
+  </div>
+  <div>
+    性別
+    <%= f.select :gender, {'男性': 'male', '女性': 'female'} %>
+  </div>
+  <div>
+    名字
+    <%= f.text_field :first_name_kanji, placeholder: '山田' %>
+  </div>
+  <div>
+    名字（カタカナ）
+    <%= f.text_field :first_name_kana, placeholder: 'ヤマダ' %>
+  </div>
+  <div>
+    名前
+    <%= f.text_field :last_name_kanji, placeholder: '太郎' %>
+  </div>
+  <div>
+    名前（カタカタ）
+    <%= f.text_field :last_name_kana, placeholder: 'タロウ' %>
+  </div>
+  <div>
+    生年月日（西暦）
+    <%= f.text_field :dob_year, :size => 4, :maxlength => 4, placeholder: 2000 %>
+    <%= f.text_field :dob_month, :size => 2, :maxlength => 2, placeholder: 4 %>
+    <%= f.text_field :dob_day, :size => 2, :maxlength => 2, placeholder: 20 %>
+  </div>
+  <br>
+
+  <div>
+    郵便番号
+    <%= f.text_field :postal_code, :size => 8, :maxlength => 8, placeholder: '1500001' %>
+  </div>
+  <div>
+    都道府県
+    <%= f.text_field :state, :size => 8, :maxlength => 8, placeholder: '東京都' %>
+  </div>
+  <div>
+    区市町村
+    <%= f.text_field :city, placeholder: '渋谷区' %>
+  </div>
+  <div>
+    丁目
+    <%= f.text_field :town, :size => 30, placeholder: '神宮前　１丁目' %>
+  </div>
+  <div>
+    番地・号
+    <%= f.text_field :line1, :size => 30, placeholder: '５-８' %>
+  </div>
+  <div>
+    建物名・部屋番号等
+    <%= f.text_field :line2, :size => 30, placeholder: '神宮前タワービルディング22F' %>
+  </div>
+  <br>
+
+  <div>
+    店舗名
+    <%= f.text_field :store_name %>
+  </div>
+  <div>
+    提供するサービス価格
+    <%= f.text_field :service_fee, :size => 8, :maxlength => 8, placeholder: '1200' %>
+  </div>
+  <div>
+    ホームページ
+    <%= f.text_field :business_url, placeholder: 'http://example.com/' %>
+  </div>
+  <br>
+
+  <div>
+    <%= f.check_box :agree_legal %>
+    <%= f.label :agree_legal do %>
+      <%= link_to 'Stripe Connectアカウント契約', 'https://stripe.com/jp/connect-account/legal', target: :blank %>に同意する
+    <% end %>
+  </div>
+  <br>
+
+  <%= f.submit %>
+<% end %>
