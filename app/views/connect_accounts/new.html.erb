@@ -1,74 +1,158 @@
+
 <%= form_with url: connect_accounts_path, model: @individual_form, method: 'post' do |f| %>
-  <div>
-    メール
-    <%= f.text_field :email, placeholder: 'taro.yamada@example.com' %>
-  </div>
-  <div>
-    性別
-    <%= f.select :gender, {'男性': 'male', '女性': 'female'} %>
-  </div>
-  <div>
-    名字
+  <%=  pp @individual_form %>
+  <%= pp @individual_form.errors %>
+  <fieldset>
+    <legend>メール</legend>
+    <div>
+      <%= f.text_field :email, placeholder: 'taro.yamada@example.com' %>
+    </div>
+    <div class="error">
+      <% if @individual_form.errors.messages[:email].any? %>
+        <%= @individual_form.errors.messages[:email].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>性別</legend>
+    <div>
+      <%= f.select :gender, {'男性': 'male', '女性': 'female'} %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>名字</legend>
     <%= f.text_field :first_name_kanji, placeholder: '山田' %>
-  </div>
-  <div>
-    名字（カタカナ）
+    <div class="error">
+      <% if @individual_form.errors.messages[:first_name_kanji].any? %>
+        <%= @individual_form.errors.messages[:first_name_kanji].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>名字（カタカナ）</legend>
     <%= f.text_field :first_name_kana, placeholder: 'ヤマダ' %>
-  </div>
-  <div>
-    名前
+    <div class="error">
+      <% if @individual_form.errors.messages[:first_name_kana].any? %>
+        <%= @individual_form.errors.messages[:first_name_kana].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>名前</legend>
     <%= f.text_field :last_name_kanji, placeholder: '太郎' %>
-  </div>
-  <div>
-    名前（カタカタ）
+    <div class="error">
+      <% if @individual_form.errors.messages[:last_name_kanji].any? %>
+        <%= @individual_form.errors.messages[:last_name_kanji].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>名前（カタカナ）</legend>
     <%= f.text_field :last_name_kana, placeholder: 'タロウ' %>
-  </div>
-  <div>
-    生年月日（西暦）
-    <%= f.text_field :dob_year, :size => 4, :maxlength => 4, placeholder: 2000 %>
-    <%= f.text_field :dob_month, :size => 2, :maxlength => 2, placeholder: 4 %>
-    <%= f.text_field :dob_day, :size => 2, :maxlength => 2, placeholder: 20 %>
-  </div>
+    <div class="error">
+      <% if @individual_form.errors.messages[:last_name_kana].any? %>
+        <%= @individual_form.errors.messages[:last_name_kana].join('<br>').html_safe %>
+      <% end %>
+    </legend>
+  </fieldset>
+  <fieldset class="dob">
+    <legend>生年月日（西暦）</legend>
+    <%= f.text_field :dob_year, :size => 4, :maxlength => 4, placeholder: 2000 %>年
+    <%= f.text_field :dob_month, :size => 2, :maxlength => 2, placeholder: 4 %>月
+    <%= f.text_field :dob_day, :size => 2, :maxlength => 2, placeholder: 20 %>日
+    <div class="error">
+      <% [:dob_year, :dob_month, :dob_day].each do |dob| %>
+        <% if @individual_form.errors.messages[dob].any? %>
+          <%= @individual_form.errors.messages[dob].join('<br>').html_safe %>
+        <% end %>
+      <% end %>
+    </div>
+  </fieldset>
   <br>
 
-  <div>
-    郵便番号
+  <fieldset>
+    <legend>郵便番号</legend>
     <%= f.text_field :postal_code, :size => 8, :maxlength => 8, placeholder: '1500001' %>
-  </div>
-  <div>
-    都道府県
+    <div class="error">
+      <% if @individual_form.errors.messages[:postal_code].any? %>
+        <%= @individual_form.errors.messages[:postal_code].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>都道府県</legend>
     <%= f.text_field :state, :size => 8, :maxlength => 8, placeholder: '東京都' %>
-  </div>
-  <div>
-    区市町村
+    <div class="error">
+      <% if @individual_form.errors.messages[:state].any? %>
+        <%= @individual_form.errors.messages[:state].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>区市町村</legend>
     <%= f.text_field :city, placeholder: '渋谷区' %>
-  </div>
-  <div>
-    丁目
+    <div class="error">
+      <% if @individual_form.errors.messages[:city].any? %>
+        <%= @individual_form.errors.messages[:city].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>丁目</legend>
     <%= f.text_field :town, :size => 30, placeholder: '神宮前　１丁目' %>
-  </div>
-  <div>
-    番地・号
+    <div class="error">
+      <% if @individual_form.errors.messages[:town].any? %>
+        <%= @individual_form.errors.messages[:town].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>番地・号</legend>
     <%= f.text_field :line1, :size => 30, placeholder: '５-８' %>
-  </div>
-  <div>
-    建物名・部屋番号等
+    <div class="error">
+      <% if @individual_form.errors.messages[:line1].any? %>
+        <%= @individual_form.errors.messages[:line1].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>建物名・部屋番号等</legend>
     <%= f.text_field :line2, :size => 30, placeholder: '神宮前タワービルディング22F' %>
-  </div>
+    <div class="error">
+      <% if @individual_form.errors.messages[:line2].any? %>
+        <%= @individual_form.errors.messages[:line2].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
   <br>
 
-  <div>
-    店舗名
+  <fieldset>
+    <legend>店舗名</legend>
     <%= f.text_field :store_name %>
-  </div>
-  <div>
-    提供するサービス価格
+    <div class="error">
+      <% if @individual_form.errors.messages[:store_name].any? %>
+        <%= @individual_form.errors.messages[:store_name].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>提供するサービス価格</legend>
     <%= f.text_field :service_fee, :size => 8, :maxlength => 8, placeholder: '1200' %>
-  </div>
-  <div>
-    ホームページ
+    <div class="error">
+      <% if @individual_form.errors.messages[:service_fee].any? %>
+        <%= @individual_form.errors.messages[:service_fee].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>ホームページ</legend>
     <%= f.text_field :business_url, placeholder: 'http://example.com/' %>
-  </div>
+    <div class="error">
+      <% if @individual_form.errors.messages[:business_url].any? %>
+        <%= @individual_form.errors.messages[:business_url].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
   <br>
 
   <div>
@@ -76,6 +160,11 @@
     <%= f.label :agree_legal do %>
       <%= link_to 'Stripe Connectアカウント契約', 'https://stripe.com/jp/connect-account/legal', target: :blank %>に同意する
     <% end %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:agree_legal].any? %>
+        <%= @individual_form.errors.messages[:agree_legal].join('<br>').html_safe %>
+      <% end %>
+    </div>
   </div>
   <br>
 

@@ -43,5 +43,5 @@ class IndividualForm
   validates :city, presence: true
   validates :town, presence: true
   validates :line1, presence: true
-  validates :agree_legal, :acceptance => {:message => '規約の同意は必須です'}
+  validates :agree_legal, acceptance: { message: '規約の同意は必須です' }
 end

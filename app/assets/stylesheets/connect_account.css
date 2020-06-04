@@ -1,0 +1,8 @@
+
+fieldset {
+    border: 0;
+}
+
+fieldset.dob .field_with_errors {
+    display: inline;
+}
