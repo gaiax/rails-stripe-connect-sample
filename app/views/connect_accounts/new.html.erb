@@ -1,5 +1,5 @@
 
-<%= form_with url: connect_accounts_path, model: @individual_form, method: 'post' do |f| %>
+<%= form_with url: connect_accounts_path, model: @individual_form, method: 'post', local: true do |f| %>
   <fieldset>
     <legend>メール</legend>
     <div>
