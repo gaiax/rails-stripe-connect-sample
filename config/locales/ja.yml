@@ -2,3 +2,13 @@ en:
   errors:
     messages:
       blank: "入力してください"
+      not_a_number: "数値を入力してください"
+  activemodel:
+    errors:
+      models:
+        individual_form:
+          attributes:
+            dob_year:
+              invalid_dob: '生年月日を西暦で入力してください'
+            postal_code:
+              invalid_address: '正しい住所を入力してください'

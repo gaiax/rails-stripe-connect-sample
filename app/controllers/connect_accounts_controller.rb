@@ -6,7 +6,7 @@ class ConnectAccountsController < ApplicationController
   end
 
   def create
-    @individual_form = IndividualForm.new(contact_form_params)
+    @individual_form = IndividualForm.new(create_params)
     return render :new unless @individual_form.validate
 
     # https://stripe.com/docs/connect/required-verification-information#JP-individual-card_payments
@@ -63,9 +63,15 @@ class ConnectAccountsController < ApplicationController
     else
       render :new
     end
+  rescue Stripe::InvalidRequestError => e
+    logger.error e
+    if e.message.start_with?('Invalid address')
+      @individual_form.errors.add(:postal_code, :invalid_address)
+    end
+    render :new
   end
 
-  def contact_form_params
+  def create_params
     params.require(:individual_form).permit(
       :store_name,
       :service_fee,

@@ -11,11 +11,17 @@
       <% end %>
     </div>
   </fieldset>
-  <fieldset>
+  <fieldset class="gender">
     <legend>性別</legend>
-    <div>
-      <%= f.select :gender, {'男性': 'male', '女性': 'female'} %>
-    </div>
+      <%= f.radio_button :gender, :male %>
+      <%= f.label :gender, '男性', value: :male %>
+      <%= f.radio_button :gender, :female %>
+      <%= f.label :gender, '女性', value: :female %>
+      <div class="error">
+        <% if @individual_form.errors.messages[:gender].any? %>
+          <%= @individual_form.errors.messages[:gender].join('<br>').html_safe %>
+        <% end %>
+      </div>
   </fieldset>
   <fieldset>
     <legend>名字</legend>
@@ -59,10 +65,8 @@
     <%= f.text_field :dob_month, :size => 2, :maxlength => 2, placeholder: 4 %>月
     <%= f.text_field :dob_day, :size => 2, :maxlength => 2, placeholder: 20 %>日
     <div class="error">
-      <% [:dob_year, :dob_month, :dob_day].each do |dob| %>
-        <% if @individual_form.errors.messages[dob].any? %>
-          <%= @individual_form.errors.messages[dob].join('<br>').html_safe %>
-        <% end %>
+      <% if @individual_form.errors.messages[:dob_year].any? %>
+        <%= @individual_form.errors.messages[:dob_year].join('<br>').html_safe %>
       <% end %>
     </div>
   </fieldset>
