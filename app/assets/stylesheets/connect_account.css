@@ -6,3 +6,8 @@ fieldset {
 fieldset.dob .field_with_errors {
     display: inline;
 }
+
+.error {
+    color: #ff0000;
+    font-size: 11px;
+}
