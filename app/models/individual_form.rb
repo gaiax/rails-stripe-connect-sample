@@ -27,7 +27,7 @@ class IndividualForm
   attr_accessor :agree_legal
   validates :store_name, presence: true
   validates :service_fee, numericality: { greater_than: 0 }
-  validates :email, format: { with: /\A\w+@\w+\.\w+\z/i, message: 'メールアドレスを入力してください' }
+  validates :email, format: { with: /\A\w[\w\.]+\w+@\w+\.\w+\z/i, message: 'メールアドレスを入力してください' }
   validates :gender, presence: true
   validates :first_name_kana, format: { with: /#{kana_pattern}/, message: 'カタカナを入力して下さい' }
   validates :first_name_kanji, presence: true
