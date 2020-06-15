@@ -70,7 +70,10 @@
       <% end %>
     </div>
   </fieldset>
-  <br>
+
+  <hr>
+
+  <h2>住所</h2>
 
   <fieldset>
     <legend>郵便番号</legend>
@@ -91,11 +94,29 @@
     </div>
   </fieldset>
   <fieldset>
+    <legend>都道府県（カナ）</legend>
+    <%= f.text_field :state_kana, :size => 8, :maxlength => 8, placeholder: 'トウキョウ' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:state_kana].any? %>
+        <%= @individual_form.errors.messages[:state_kana].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
     <legend>区市町村</legend>
     <%= f.text_field :city, placeholder: '渋谷区' %>
     <div class="error">
       <% if @individual_form.errors.messages[:city].any? %>
         <%= @individual_form.errors.messages[:city].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>区市町村（カナ）</legend>
+    <%= f.text_field :city_kana, placeholder: 'シブヤ' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:city_kana].any? %>
+        <%= @individual_form.errors.messages[:city_kana].join('<br>').html_safe %>
       <% end %>
     </div>
   </fieldset>
@@ -109,11 +130,29 @@
     </div>
   </fieldset>
   <fieldset>
+    <legend>丁目（カナ）</legend>
+    <%= f.text_field :town_kana, :size => 30, placeholder: 'ジングウマエ 1チョウメ' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:town_kana].any? %>
+        <%= @individual_form.errors.messages[:town_kana].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
     <legend>番地・号</legend>
     <%= f.text_field :line1, :size => 30, placeholder: '５-８' %>
     <div class="error">
       <% if @individual_form.errors.messages[:line1].any? %>
         <%= @individual_form.errors.messages[:line1].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>番地・号（カナ）</legend>
+    <%= f.text_field :line1_kana, :size => 30, placeholder: '5-8' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:line1_kana].any? %>
+        <%= @individual_form.errors.messages[:line1_kana].join('<br>').html_safe %>
       <% end %>
     </div>
   </fieldset>
@@ -127,6 +166,19 @@
     </div>
   </fieldset>
   <br>
+  <fieldset>
+    <legend>建物名・部屋番号等（カナ）</legend>
+    <%= f.text_field :line2_kana, :size => 30, placeholder: 'ジングウマエタワービルディング22F' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:line2_kana].any? %>
+        <%= @individual_form.errors.messages[:line2_kana].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <hr>
+
+  <h2>店舗情報</h2>
 
   <fieldset>
     <legend>店舗名</legend>
@@ -155,7 +207,6 @@
       <% end %>
     </div>
   </fieldset>
-  <br>
 
   <div>
     <%= f.check_box :agree_legal %>
@@ -168,6 +219,54 @@
       <% end %>
     </div>
   </div>
+
+  <hr>
+
+  <h2>銀行口座</h2>
+  <p>売上の送金先を登録します。国内の金融機関のみに対応しています。</p>
+  <div class="error">
+    <% if @individual_form.errors.messages[:bank_account].any? %>
+      <%= @individual_form.errors.messages[:bank_account].join('<br>').html_safe %>
+    <% end %>
+  </div>
+
+  <fieldset>
+    <legend>銀行コード</legend>
+    <%= f.text_field :bank_number, :size => 3, :maxlength => 3, placeholder: '110' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:bank_number].any? %>
+        <%= @individual_form.errors.messages[:bank_number].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>支店コード</legend>
+    <%= f.text_field :bank_branch_number, :size => 4, :maxlength => 4, placeholder: '0000' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:bank_branch_number].any? %>
+        <%= @individual_form.errors.messages[:bank_branch_number].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>口座番号</legend>
+    <%= f.text_field :bank_account_number, :size => 7, :maxlength => 7, placeholder: '0001234' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:bank_account_number].any? %>
+        <%= @individual_form.errors.messages[:bank_account_number].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>名義</legend>
+    <%= f.text_field :bank_account_holder_name, placeholder: 'カ）タロウ' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:bank_account_holder_name].any? %>
+        <%= @individual_form.errors.messages[:bank_account_holder_name].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+
   <br>
 
   <%= f.submit %>

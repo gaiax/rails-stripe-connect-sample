@@ -12,3 +12,5 @@ en:
               invalid_dob: '生年月日を西暦で入力してください'
             postal_code:
               invalid_address: '正しい住所を入力してください'
+            bank_account:
+              invaluid_bank_account: '正しい口座情報を入力してください'
