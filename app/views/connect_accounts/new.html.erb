@@ -232,7 +232,7 @@
 
   <fieldset>
     <legend>銀行コード</legend>
-    <%= f.text_field :bank_number, :size => 3, :maxlength => 3, placeholder: '110' %>
+    <%= f.text_field :bank_number, :size => 4, :maxlength => 4, placeholder: '1100' %>
     <div class="error">
       <% if @individual_form.errors.messages[:bank_number].any? %>
         <%= @individual_form.errors.messages[:bank_number].join('<br>').html_safe %>
@@ -241,7 +241,7 @@
   </fieldset>
   <fieldset>
     <legend>支店コード</legend>
-    <%= f.text_field :bank_branch_number, :size => 4, :maxlength => 4, placeholder: '0000' %>
+    <%= f.text_field :bank_branch_number, :size => 3, :maxlength => 3, placeholder: '000' %>
     <div class="error">
       <% if @individual_form.errors.messages[:bank_branch_number].any? %>
         <%= @individual_form.errors.messages[:bank_branch_number].join('<br>').html_safe %>

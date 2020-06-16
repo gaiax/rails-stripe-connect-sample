@@ -57,8 +57,8 @@ class IndividualForm
   validates :line1, presence: true
   validates :line1_kana, presence: true, format: { with: /#{kana_pattern}/, message: 'カタカナで入力して下さい' }
   validates :agree_legal, acceptance: { message: '規約の同意は必須です' }
-  validates :bank_number, format: { with: /\A[0-9０-９]{3}\z/, message: '銀行コードを数字3桁で入力して下さい' }
-  validates :bank_branch_number, format: { with: /\A[0-9０-９]{4}\z/, message: '支店コードを数字4桁で入力して下さい' }
+  validates :bank_number, format: { with: /\A[0-9０-９]{4}\z/, message: '銀行コードを数字3桁で入力して下さい' }
+  validates :bank_branch_number, format: { with: /\A[0-9０-９]{3}\z/, message: '支店コードを数字4桁で入力して下さい' }
   validates :bank_account_number, format: { with: /\A[0-9０-９]{7}\z/, message: '口座番号を数字7桁で入力して下さい' }
   validates :bank_account_holder_name, format: { with: /\A[\p{katakana}\p{blank}ー－）\)]+\z/, message: '入力例： カ）タロウ' }
 
