@@ -29,10 +29,12 @@
 
         ログイン中：<%= current_user.email %>
 
-        <% if @my_store.present? %>
+        <% if !current_user.details_submitted %>
+          <%= link_to '店舗登録する', account_links_path %>
+        <% elsif @my_store.present? %>
           <%= @my_store.name %>
         <% else %>
-          <%= link_to '店舗登録する', new_connect_account_path %>
+          <%= link_to 'アカウント', accounts_path %>
         <% end %>
       <% end %>
     <% else %>

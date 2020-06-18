@@ -3,6 +3,16 @@
 class RootController < ApplicationController
   def index
     @stores = Store.all.order('updated_at DESC')
+    # pp Stripe::Account.update(
+    #   current_user.stripe_account_id,
+    #   {
+    #     business_profile: {
+    #       url: 'https://gaiax.co.jp/'
+    #     }
+    #   }
+    # )
+    # stripe_account = Stripe::Account.retrieve(current_user.stripe_account_id)
+    # pp stripe_account
   end
 
   # JavaScriptから叩くアクション

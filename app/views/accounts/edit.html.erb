@@ -1,0 +1,83 @@
+<h1>店舗登録をする</h1>
+
+<%= form_with url: accounts_path, model: @individual_form, method: 'post', local: true do |f| %>
+
+  <h2>店舗情報</h2>
+
+  <fieldset>
+    <legend>店舗名</legend>
+    <%= f.text_field :store_name %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:store_name].any? %>
+        <%= @individual_form.errors.messages[:store_name].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>提供するサービス価格</legend>
+    <%= f.text_field :service_fee, :size => 8, :maxlength => 8, placeholder: '1200' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:service_fee].any? %>
+        <%= @individual_form.errors.messages[:service_fee].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>ホームページ</legend>
+    <%= f.text_field :business_url, placeholder: 'http://example.com/' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:business_url].any? %>
+        <%= @individual_form.errors.messages[:business_url].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <h2>銀行口座</h2>
+  <p>売上の送金先を登録します。国内の金融機関のみに対応しています。</p>
+  <div class="error">
+    <% if @individual_form.errors.messages[:bank_account].any? %>
+      <%= @individual_form.errors.messages[:bank_account].join('<br>').html_safe %>
+    <% end %>
+  </div>
+
+  <fieldset>
+    <legend>銀行コード</legend>
+    <%= f.text_field :bank_number, :size => 4, :maxlength => 4, placeholder: '1100' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:bank_number].any? %>
+        <%= @individual_form.errors.messages[:bank_number].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>支店コード</legend>
+    <%= f.text_field :bank_branch_number, :size => 3, :maxlength => 3, placeholder: '000' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:bank_branch_number].any? %>
+        <%= @individual_form.errors.messages[:bank_branch_number].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>口座番号</legend>
+    <%= f.text_field :bank_account_number, :size => 7, :maxlength => 7, placeholder: '0001234' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:bank_account_number].any? %>
+        <%= @individual_form.errors.messages[:bank_account_number].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>名義</legend>
+    <%= f.text_field :bank_account_holder_name, placeholder: 'カ）タロウ' %>
+    <div class="error">
+      <% if @individual_form.errors.messages[:bank_account_holder_name].any? %>
+        <%= @individual_form.errors.messages[:bank_account_holder_name].join('<br>').html_safe %>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <br>
+
+  <%= f.submit '登録する' %>
+<% end %>

@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $('.payment').click(function () {
-        console.log($(this).attr('data-store-id'))
         var storeId = $(this).attr('data-store-id')
         $.ajax({
             type: 'POST',
@@ -14,6 +13,9 @@ $(document).ready(function () {
             },
             success: function (data) {
                 startDirectCharge(data)
+            },
+            error: function (data) {
+                console.log(data)
             }
         })
         return false

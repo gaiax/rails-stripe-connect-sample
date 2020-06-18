@@ -30,12 +30,22 @@ namespace :connect_account do
             day: 1
           },
           address_kanji: {
+            country: 'JP',
             postal_code: '１５００００１',
             state: '東京都',
             city: '渋谷区',
             town: '神宮前　１丁目',
             line1: '５－８',
             line2: '神宮前タワービルディング22F'
+          },
+          address_kana: {
+            country: 'JP',
+            postal_code: '1500001',
+            state: 'ﾄｳｷﾖｳﾄ',
+            city: 'ｼﾌﾞﾔ',
+            town: 'ｼﾞﾝｸﾞｳﾏｴ 1ﾁｮｳﾒ',
+            line1: '5-8',
+            line2: 'ｼﾞﾝｸﾞｳﾏｴﾀﾜｰﾋﾞﾙﾃﾞｨﾝｸﾞ22F'
           }
         },
         # 規約に同意する https://stripe.com/docs/connect/updating-accounts
@@ -75,6 +85,6 @@ namespace :connect_account do
       service_fee: 1000
     )
 
-    Rails.logger.info "Created Stripe Connect account! #{user.stripe_account_id}"
+    Rails.logger.info 'Created Stripe Connect account! #{user.stripe_account_id}'
   end
 end
