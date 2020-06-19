@@ -3,10 +3,13 @@
 class AccountLinksController < ApplicationController
   def start
     redirect_to root_path if current_user.blank?
-    if account_enabled?
-      account_link_type = 'custom_account_update'
+    account_link_type = if account_enabled?
+      'custom_account_update'
     else
-      account_link_type = 'custom_account_verification'
+      'custom_account_verification'
+    end
+
+    if current_user.stripe_account_id.blank?
       stripe_account = Stripe::Account.create(
         {
           # APIではCustomアカウントのみ作成可能（2020年05月22日現在）
