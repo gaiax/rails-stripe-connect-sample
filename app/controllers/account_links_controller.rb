@@ -3,7 +3,10 @@
 class AccountLinksController < ApplicationController
   def start
     redirect_to root_path if current_user.blank?
-    if current_user.stripe_account_id.blank?
+    if account_enabled?
+      account_link_type = 'custom_account_update'
+    else
+      account_link_type = 'custom_account_verification'
       stripe_account = Stripe::Account.create(
         {
           # APIではCustomアカウントのみ作成可能（2020年05月22日現在）
@@ -31,7 +34,7 @@ class AccountLinksController < ApplicationController
         account: current_user.stripe_account_id,
         failure_url: "#{base_url}#{failure_account_links_path}",
         success_url: "#{base_url}#{success_account_links_path}",
-        type: 'custom_account_verification',
+        type: account_link_type,
         collect: 'currently_due'
       }
     )
@@ -51,5 +54,17 @@ class AccountLinksController < ApplicationController
   def failure
     # TODO:
     redirect_to root_path
+  end
+
+  private
+
+  def account_enabled?
+    return false if current_user.stripe_account_id.blank?
+
+    stripe_account = Stripe::Account.retrieve(current_user.stripe_account_id)
+    # Custom Account は Account Link で External account（銀行口座・デビットカード等）の入力ができないため、
+    # Account Linkの状態判定から取り除く
+    disabled_reasons = stripe_account.requirements.past_due.reject { |reason| reason == 'external_account' }
+    disabled_reasons.empty?
   end
 end

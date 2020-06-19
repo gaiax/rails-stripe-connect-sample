@@ -1,4 +1,13 @@
-<h1>店舗登録をする</h1>
+<h1>店舗管理</h1>
+
+<% if @account_disabled %>
+  <%= link_to '本人確認情報を入力する', account_links_path %>
+  <div class="error">
+    店舗登録には本人確認情報の入力が必要です
+  </div>
+<% else %>
+  <%= link_to '本人確認情報を確認する', account_links_path %>
+<% end %>
 
 <%= form_with url: accounts_path, model: @individual_form, method: 'post', local: true do |f| %>
 

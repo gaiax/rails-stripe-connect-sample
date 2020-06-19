@@ -2,6 +2,8 @@
 
 class AccountsController < ApplicationController
   def edit
+    @account_disabled = account_disabled?
+
     if request.method_symbol == :get
       @individual_form = IndividualForm.new
       return
@@ -66,5 +68,17 @@ class AccountsController < ApplicationController
       :bank_account_number,
       :bank_account_holder_name
     )
+  end
+
+  private
+
+  def account_disabled?
+    return true if current_user.stripe_account_id.blank?
+
+    stripe_account = Stripe::Account.retrieve(current_user.stripe_account_id)
+    # Custom Account は Account Link で External account（銀行口座・デビットカード等）の入力ができないため、
+    # Account Linkの状態判定から取り除く
+    disabled_reasons = stripe_account.requirements.past_due.reject { |reason| reason == 'external_account' }
+    !disabled_reasons.empty?
   end
 end
