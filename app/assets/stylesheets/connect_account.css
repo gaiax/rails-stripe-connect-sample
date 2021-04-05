@@ -1,0 +1,17 @@
+
+fieldset {
+    border: 0;
+}
+
+.field_with_errors {
+    display: inline-block;
+}
+
+label {
+    display: inline-block;
+}
+
+.error {
+    color: #ff0000;
+    font-size: 11px;
+}

@@ -1,0 +1,38 @@
+<% content_for :javascript do %>
+  <script src="https://js.stripe.com/v3/"></script>
+<% end %>
+
+<% if @stores.blank? %>
+  <p>店舗がありません。次のコマンドを実行して店舗データを作成してください。</p>
+  <code>
+    $ rails connect_account:create
+  </code>
+<% else %>
+  <table>
+    <% if current_user.blank? %>
+      <caption>購入にはログインが必要です</caption>
+    <% end %>
+    <thead>
+      <tr>
+        <th>店舗</th>
+        <th>サービス料</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stores.each do |store| %>
+        <tr>
+          <td><%= store.name %></td>
+          <td><%= store.service_fee %></td>
+          <td class="payment">
+            <% if current_user.present? && store.user_id == current_user.id %>
+              <p>自身の店舗では購入できません</p>
+            <% else %>
+              <%= button_tag '購入する', {class: 'payment', disabled: current_user.blank?, data: {store_id: store.id}}  %>
+            <% end%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

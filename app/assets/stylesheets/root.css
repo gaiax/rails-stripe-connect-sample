@@ -1,0 +1,21 @@
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+table {
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px black solid;
+    padding: 10px;
+}
+td.payment {
+    text-align: center;
+}
+
+code {
+    background-color: #eeeeee;
+    padding: 10px 5px;
+}
